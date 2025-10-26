@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Network, Filter } from 'lucide-react';
 import { graphApi } from '@/services/api';
 import type { KnowledgeGraph } from '@/types';
+import { useTranslation } from 'react-i18next';
 import './Graph.css';
 
 const Graph: React.FC = () => {
+  const { t } = useTranslation();
   const [graph, setGraph] = useState<KnowledgeGraph | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
@@ -34,13 +36,13 @@ const Graph: React.FC = () => {
   );
 
   if (loading) {
-    return <div className="loading">加载中...</div>;
+    return <div className="loading">{t('common.loading')}</div>;
   }
 
   return (
     <div className="graph-page">
       <div className="page-header">
-        <h1>知识图谱</h1>
+        <h1>{t('graph.title')}</h1>
         <div className="graph-controls">
           <div className="filter-group">
             <Filter size={20} />
@@ -49,7 +51,7 @@ const Graph: React.FC = () => {
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="input"
             >
-              <option value="">所有分类</option>
+              <option value="">{t('common.allCategories')}</option>
               {categories.map((cat) => (
                 <option key={cat} value={cat}>
                   {cat}

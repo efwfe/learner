@@ -1,0 +1,95 @@
+{
+  "common": {
+    "loading": "加载中...",
+    "cancel": "取消",
+    "submit": "提交",
+    "delete": "删除",
+    "edit": "编辑",
+    "search": "搜索",
+    "filter": "筛选",
+    "allCategories": "所有分类"
+  },
+  "nav": {
+    "home": "首页",
+    "knowledge": "知识库",
+    "review": "复习计划",
+    "graph": "知识图谱"
+  },
+  "home": {
+    "title": "智能学习管理系统",
+    "subtitle": "基于遗忘曲线的个人知识管理平台，帮助你构建系统化的知识体系",
+    "stats": {
+      "total": "知识点总数",
+      "mastered": "已掌握",
+      "dueReviews": "待复习",
+      "masteryRate": "掌握率"
+    },
+    "actions": {
+      "addLearning": {
+        "title": "记录学习",
+        "desc": "添加今天的学习内容，系统会自动提取知识点"
+      },
+      "startReview": {
+        "title": "开始复习",
+        "desc": "根据遗忘曲线，智能安排今日的复习计划"
+      },
+      "viewGraph": {
+        "title": "知识图谱",
+        "desc": "可视化你的知识体系，发现知识点之间的关联"
+      }
+    },
+    "quickStats": {
+      "reviewedToday": "今日已复习",
+      "avgQuality": "平均复习质量",
+      "inProgress": "学习中",
+      "items": "个"
+    }
+  },
+  "knowledge": {
+    "title": "知识库",
+    "addNew": "新增知识点",
+    "searchPlaceholder": "搜索知识点...",
+    "categories": {
+      "programming": "编程",
+      "math": "数学",
+      "language": "语言",
+      "other": "其他"
+    },
+    "mastered": "已掌握",
+    "reviews": "复习",
+    "times": "次",
+    "difficulty": "难度",
+    "empty": "暂无知识点",
+    "createFirst": "创建第一个知识点"
+  },
+  "review": {
+    "title": "今日复习计划",
+    "estimatedTime": "预计",
+    "minutes": "分钟",
+    "highPriority": "高优先级",
+    "mediumPriority": "中优先级",
+    "startReview": "开始复习",
+    "submitReview": "提交复习",
+    "reviewing": "复习：",
+    "summary": "摘要：",
+    "qualityRating": "回忆质量评分",
+    "qualityLevels": {
+      "0": "完全不记得",
+      "1": "错误答案",
+      "2": "错误但想起来了",
+      "3": "困难但正确",
+      "4": "犹豫后正确",
+      "5": "完美记忆"
+    },
+    "noTasks": {
+      "title": "今天没有复习任务",
+      "desc": "太棒了！所有知识点都在掌握中"
+    }
+  },
+  "graph": {
+    "title": "知识图谱",
+    "loading": "加载中...",
+    "empty": "暂无数据"
+  }
+}
+

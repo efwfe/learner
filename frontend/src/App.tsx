@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import KnowledgeList from './pages/KnowledgeList';
 import Review from './pages/Review';
 import Graph from './pages/Graph';
+import './i18n';
 
 const App: React.FC = () => {
   return (

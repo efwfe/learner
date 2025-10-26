@@ -3,9 +3,11 @@ import { Calendar, Clock, CheckCircle } from 'lucide-react';
 import { reviewApi } from '@/services/api';
 import type { ReviewPlan, KnowledgePoint } from '@/types';
 import { formatDate } from '@/utils/date';
+import { useTranslation } from 'react-i18next';
 import './Review.css';
 
 const Review: React.FC = () => {
+  const { t } = useTranslation();
   const [plan, setPlan] = useState<ReviewPlan | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentReview, setCurrentReview] = useState<KnowledgePoint | null>(null);
@@ -52,36 +54,36 @@ const Review: React.FC = () => {
   };
 
   const qualityLevels = [
-    { value: 0, label: '完全不记得', color: 'var(--color-danger)' },
-    { value: 1, label: '错误答案', color: '#ff6b6b' },
-    { value: 2, label: '错误但想起来了', color: 'var(--color-warning)' },
-    { value: 3, label: '困难但正确', color: '#ffd93d' },
-    { value: 4, label: '犹豫后正确', color: '#6bcf7f' },
-    { value: 5, label: '完美记忆', color: 'var(--color-success)' },
+    { value: 0, label: t('review.qualityLevels.0'), color: 'var(--color-danger)' },
+    { value: 1, label: t('review.qualityLevels.1'), color: '#ff6b6b' },
+    { value: 2, label: t('review.qualityLevels.2'), color: 'var(--color-warning)' },
+    { value: 3, label: t('review.qualityLevels.3'), color: '#ffd93d' },
+    { value: 4, label: t('review.qualityLevels.4'), color: '#6bcf7f' },
+    { value: 5, label: t('review.qualityLevels.5'), color: 'var(--color-success)' },
   ];
 
   if (loading) {
-    return <div className="loading">加载中...</div>;
+    return <div className="loading">{t('common.loading')}</div>;
   }
 
   if (reviewing && currentReview) {
     return (
       <div className="review-session">
         <div className="review-card">
-          <h2>复习：{currentReview.title}</h2>
+          <h2>{t('review.reviewing')}{currentReview.title}</h2>
           
           <div className="review-content">
             <p>{currentReview.content}</p>
             {currentReview.summary && (
               <div className="review-summary">
-                <strong>摘要：</strong>
+                <strong>{t('review.summary')}</strong>
                 <p>{currentReview.summary}</p>
               </div>
             )}
           </div>
 
           <div className="quality-selector">
-            <h3>回忆质量评分</h3>
+            <h3>{t('review.qualityRating')}</h3>
             <div className="quality-options">
               {qualityLevels.map((level) => (
                 <button
@@ -104,13 +106,13 @@ const Review: React.FC = () => {
               className="btn btn-secondary"
               onClick={() => setReviewing(false)}
             >
-              取消
+              {t('common.cancel')}
             </button>
             <button
               className="btn btn-primary"
               onClick={submitReview}
             >
-              提交复习
+              {t('review.submitReview')}
             </button>
           </div>
         </div>
@@ -121,7 +123,7 @@ const Review: React.FC = () => {
   return (
     <div className="review-page">
       <div className="page-header">
-        <h1>今日复习计划</h1>
+        <h1>{t('review.title')}</h1>
         <div className="plan-meta">
           <span className="meta-item">
             <Calendar size={16} />
@@ -129,7 +131,7 @@ const Review: React.FC = () => {
           </span>
           <span className="meta-item">
             <Clock size={16} />
-            预计 {plan?.estimated_time_minutes || 0} 分钟
+            {t('review.estimatedTime')} {plan?.estimated_time_minutes || 0} {t('review.minutes')}
           </span>
         </div>
       </div>
@@ -138,7 +140,7 @@ const Review: React.FC = () => {
         <>
           <div className="priority-section">
             <h2 className="priority-title high">
-              高优先级 ({plan.reviews_by_priority.high.length})
+              {t('review.highPriority')} ({plan.reviews_by_priority.high.length})
             </h2>
             <div className="review-list">
               {plan.reviews_by_priority.high.map((kp) => (
@@ -147,15 +149,15 @@ const Review: React.FC = () => {
                     <h3>{kp.title}</h3>
                     <p>{kp.summary || kp.content.substring(0, 100)}</p>
                     <div className="review-item-meta">
-                      <span>复习 {kp.repetitions} 次</span>
-                      <span>难度 {kp.ease_factor.toFixed(1)}</span>
+                      <span>{t('knowledge.reviews')} {kp.repetitions} {t('knowledge.times')}</span>
+                      <span>{t('knowledge.difficulty')} {kp.ease_factor.toFixed(1)}</span>
                     </div>
                   </div>
                   <button
                     className="btn btn-primary"
                     onClick={() => startReview(kp)}
                   >
-                    开始复习
+                    {t('review.startReview')}
                   </button>
                 </div>
               ))}
@@ -165,7 +167,7 @@ const Review: React.FC = () => {
           {plan.reviews_by_priority.medium.length > 0 && (
             <div className="priority-section">
               <h2 className="priority-title medium">
-                中优先级 ({plan.reviews_by_priority.medium.length})
+                {t('review.mediumPriority')} ({plan.reviews_by_priority.medium.length})
               </h2>
               <div className="review-list">
                 {plan.reviews_by_priority.medium.map((kp) => (
@@ -178,7 +180,7 @@ const Review: React.FC = () => {
                       className="btn btn-secondary"
                       onClick={() => startReview(kp)}
                     >
-                      开始复习
+                      {t('review.startReview')}
                     </button>
                   </div>
                 ))}
@@ -189,8 +191,8 @@ const Review: React.FC = () => {
       ) : (
         <div className="empty-state">
           <CheckCircle size={64} color="var(--color-success)" />
-          <h2>今天没有复习任务</h2>
-          <p>太棒了！所有知识点都在掌握中</p>
+          <h2>{t('review.noTasks.title')}</h2>
+          <p>{t('review.noTasks.desc')}</p>
         </div>
       )}
     </div>

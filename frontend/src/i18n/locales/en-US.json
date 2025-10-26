@@ -1,0 +1,95 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "filter": "Filter",
+    "allCategories": "All Categories"
+  },
+  "nav": {
+    "home": "Home",
+    "knowledge": "Knowledge",
+    "review": "Review",
+    "graph": "Graph"
+  },
+  "home": {
+    "title": "Intelligent Learning System",
+    "subtitle": "A personal knowledge management platform based on the forgetting curve",
+    "stats": {
+      "total": "Total Points",
+      "mastered": "Mastered",
+      "dueReviews": "Due Reviews",
+      "masteryRate": "Mastery Rate"
+    },
+    "actions": {
+      "addLearning": {
+        "title": "Record Learning",
+        "desc": "Add today's learning content, the system will automatically extract key points"
+      },
+      "startReview": {
+        "title": "Start Review",
+        "desc": "Intelligently arrange today's review plan based on forgetting curve"
+      },
+      "viewGraph": {
+        "title": "Knowledge Graph",
+        "desc": "Visualize your knowledge system and discover connections"
+      }
+    },
+    "quickStats": {
+      "reviewedToday": "Reviewed Today",
+      "avgQuality": "Avg Quality",
+      "inProgress": "In Progress",
+      "items": ""
+    }
+  },
+  "knowledge": {
+    "title": "Knowledge Base",
+    "addNew": "Add Knowledge",
+    "searchPlaceholder": "Search knowledge...",
+    "categories": {
+      "programming": "Programming",
+      "math": "Math",
+      "language": "Language",
+      "other": "Other"
+    },
+    "mastered": "Mastered",
+    "reviews": "Reviews",
+    "times": "times",
+    "difficulty": "Difficulty",
+    "empty": "No knowledge points",
+    "createFirst": "Create your first knowledge point"
+  },
+  "review": {
+    "title": "Today's Review Plan",
+    "estimatedTime": "Est.",
+    "minutes": "min",
+    "highPriority": "High Priority",
+    "mediumPriority": "Medium Priority",
+    "startReview": "Start Review",
+    "submitReview": "Submit Review",
+    "reviewing": "Reviewing: ",
+    "summary": "Summary: ",
+    "qualityRating": "Recall Quality Rating",
+    "qualityLevels": {
+      "0": "Complete blackout",
+      "1": "Wrong answer",
+      "2": "Wrong but remembered",
+      "3": "Difficult but correct",
+      "4": "Correct after hesitation",
+      "5": "Perfect recall"
+    },
+    "noTasks": {
+      "title": "No review tasks today",
+      "desc": "Great! All knowledge points are under control"
+    }
+  },
+  "graph": {
+    "title": "Knowledge Graph",
+    "loading": "Loading...",
+    "empty": "No data"
+  }
+}
+

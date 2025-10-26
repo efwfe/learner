@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, BookOpen, Calendar, Network, Menu } from 'lucide-react';
 import { useStore } from '@/hooks/useStore';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 import './Layout.css';
 
 interface LayoutProps {
@@ -11,12 +13,13 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const { sidebarOpen, setSidebarOpen } = useStore();
+  const { t } = useTranslation();
 
   const navItems = [
-    { path: '/', icon: Home, label: '首页' },
-    { path: '/knowledge', icon: BookOpen, label: '知识库' },
-    { path: '/review', icon: Calendar, label: '复习计划' },
-    { path: '/graph', icon: Network, label: '知识图谱' },
+    { path: '/', icon: Home, label: t('nav.home') },
+    { path: '/knowledge', icon: BookOpen, label: t('nav.knowledge') },
+    { path: '/review', icon: Calendar, label: t('nav.review') },
+    { path: '/graph', icon: Network, label: t('nav.graph') },
   ];
 
   return (
@@ -33,6 +36,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </button>
             <h1 className="logo">Learner</h1>
           </div>
+          <LanguageSwitcher />
         </div>
       </header>
 

@@ -4,10 +4,12 @@ import { knowledgeApi } from '@/services/api';
 import { useStore } from '@/hooks/useStore';
 // import type { KnowledgePoint } from '@/types';
 import { formatRelativeTime } from '@/utils/date';
+import { useTranslation } from 'react-i18next';
 import KnowledgeForm from '@/components/KnowledgeForm';
 import './KnowledgeList.css';
 
 const KnowledgeList: React.FC = () => {
+  const { t } = useTranslation();
   const { knowledgePoints, setKnowledgePoints } = useStore();
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -48,10 +50,10 @@ const KnowledgeList: React.FC = () => {
   return (
     <div className="knowledge-list-page">
       <div className="page-header">
-        <h1>知识库</h1>
+        <h1>{t('knowledge.title')}</h1>
         <button className="btn btn-primary" onClick={() => setShowForm(true)}>
           <Plus size={20} />
-          新增知识点
+          {t('knowledge.addNew')}
         </button>
       </div>
 
@@ -60,7 +62,7 @@ const KnowledgeList: React.FC = () => {
           <Search size={20} />
           <input
             type="text"
-            placeholder="搜索知识点..."
+            placeholder={t('knowledge.searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="input"
@@ -74,17 +76,17 @@ const KnowledgeList: React.FC = () => {
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="input"
           >
-            <option value="">所有分类</option>
-            <option value="编程">编程</option>
-            <option value="数学">数学</option>
-            <option value="语言">语言</option>
-            <option value="其他">其他</option>
+            <option value="">{t('common.allCategories')}</option>
+            <option value="编程">{t('knowledge.categories.programming')}</option>
+            <option value="数学">{t('knowledge.categories.math')}</option>
+            <option value="语言">{t('knowledge.categories.language')}</option>
+            <option value="其他">{t('knowledge.categories.other')}</option>
           </select>
         </div>
       </div>
 
       {loading ? (
-        <div className="loading">加载中...</div>
+        <div className="loading">{t('common.loading')}</div>
       ) : (
         <div className="knowledge-grid">
           {filteredPoints.map((kp) => (
@@ -92,7 +94,7 @@ const KnowledgeList: React.FC = () => {
               <div className="knowledge-card-header">
                 <h3>{kp.title}</h3>
                 {kp.is_mastered && (
-                  <span className="badge badge-success">已掌握</span>
+                  <span className="badge badge-success">{t('knowledge.mastered')}</span>
                 )}
               </div>
 
@@ -102,13 +104,13 @@ const KnowledgeList: React.FC = () => {
 
               <div className="knowledge-meta">
                 <span className="meta-item">
-                  复习 {kp.repetitions} 次
+                  {t('knowledge.reviews')} {kp.repetitions} {t('knowledge.times')}
                 </span>
                 <span
                   className="meta-item"
                   style={{ color: getProgressColor(kp.repetitions, kp.is_mastered) }}
                 >
-                  难度 {kp.ease_factor.toFixed(1)}
+                  {t('knowledge.difficulty')} {kp.ease_factor.toFixed(1)}
                 </span>
               </div>
 
@@ -127,10 +129,10 @@ const KnowledgeList: React.FC = () => {
 
       {!loading && filteredPoints.length === 0 && (
         <div className="empty-state">
-          <p>暂无知识点</p>
+          <p>{t('knowledge.empty')}</p>
           <button className="btn btn-primary" onClick={() => setShowForm(true)}>
             <Plus size={20} />
-            创建第一个知识点
+            {t('knowledge.createFirst')}
           </button>
         </div>
       )}

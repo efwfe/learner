@@ -5,8 +5,6 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: learner-backend
-    ports:
-      - "8000:8000"
     environment:
       - DATABASE_URL=sqlite:////app/learner/learner.db
     env_file:

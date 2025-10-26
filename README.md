@@ -2,6 +2,8 @@
 
 [English](#english) | [中文](README.zh-CN.md)
 
+![Learner App](./imgs/app.png)
+
 <a name="english"></a>
 
 A personal knowledge management platform based on the forgetting curve with spaced repetition and AI-powered features.

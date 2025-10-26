@@ -1,0 +1,41 @@
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: learner-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:////app/learner/learner.db
+    env_file:
+      - .env
+    volumes:
+      - ./backend/data:/app/data
+      - ./backend/app:/app/app
+      - ~/.cache/shared/learner:/app/learner
+    networks:
+      - learner-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: learner-frontend
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+    networks:
+      - learner-network
+    restart: unless-stopped
+
+networks:
+  learner-network:
+    driver: bridge
+
+volumes:
+  backend-data:
+

@@ -1,3 +1,275 @@
+# Learner - Intelligent Learning Management System
+
+[English](#english) | [中文](#chinese)
+
+---
+
+<a name="english"></a>
+
+## 🌟 Overview
+
+A personal knowledge management platform based on the forgetting curve, helping you build a systematic knowledge base with spaced repetition and AI-powered features.
+
+## ✨ Core Features
+
+### 1. Learning Content Management
+- 📝 Record daily learning content
+- 🤖 AI-powered knowledge point extraction
+- 🏷️ Intelligent categorization and tag management
+
+### 2. Intelligent Review System
+- 📊 **SuperMemo SM-2** algorithm-based spaced repetition
+- ⏰ Personalized review schedule
+- 📈 Learning progress tracking
+
+### 3. Knowledge Graph
+- 🕸️ Visualize relationships between knowledge points
+- 🔗 AI-powered intelligent association suggestions
+- 🎯 Knowledge system construction
+
+### 4. AI-Assisted Features
+- 💡 Auto-generate knowledge summaries
+- ❓ Intelligent review question generation
+- 🤝 Knowledge relationship recommendations
+
+## 🛠️ Tech Stack
+
+### Backend
+- **FastAPI** - Modern Python web framework
+- **SQLAlchemy** - ORM database management
+- **Azure OpenAI** - GPT-4 AI integration
+- **SQLite** - Lightweight database
+
+### Frontend
+- **React 18** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Fast build tool
+- **Zustand** - State management
+- **Lucide Icons** - Icon library
+
+### Deployment
+- **Docker** - Containerization
+- **Docker Compose** - Multi-container orchestration
+
+## 📦 Quick Start
+
+### Prerequisites
+
+- Python 3.11+
+- Node.js 18+
+- Docker & Docker Compose (optional)
+
+### Using Docker (Recommended)
+
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd learner
+```
+
+2. **Configure environment variables**
+```bash
+cp .env.example .env
+# Edit .env file with your Azure OpenAI configuration
+```
+
+3. **Start services**
+```bash
+docker-compose up -d
+```
+
+4. **Access the application**
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+- API Documentation: http://localhost:8000/api/docs
+
+### Local Development
+
+#### Backend
+
+```bash
+cd backend
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure environment variables
+cp .env.example .env
+# Edit .env file
+
+# Start service
+python -m app.main
+```
+
+Backend service will start at http://localhost:8000
+
+#### Frontend
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Frontend application will start at http://localhost:3000
+
+## 📖 Usage Guide
+
+### 1. Configure Azure OpenAI
+
+Configure in the `.env` file:
+
+```env
+AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+AZURE_OPENAI_API_KEY=your-api-key-here
+AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4
+AZURE_OPENAI_API_VERSION=2024-02-15-preview
+```
+
+### 2. Add Learning Content
+
+- Visit the "Knowledge Base" page
+- Click "Add Knowledge Point"
+- Enter learning content; the system will automatically extract key knowledge points using GPT
+
+### 3. Start Reviewing
+
+- Visit the "Review Plan" page
+- View today's knowledge points to review
+- Review by priority and rate (0-5 points)
+- The system will automatically adjust the next review time based on your rating
+
+### 4. Explore Knowledge Graph
+
+- Visit the "Knowledge Graph" page
+- View the network of relationships between knowledge points
+- Use AI suggestion features to discover potential associations
+
+## 🧠 Forgetting Curve Algorithm
+
+This system uses the **SuperMemo SM-2** algorithm, a scientifically validated spaced repetition learning algorithm.
+
+### Review Quality Rating
+
+- **5** - Perfect recall: Effortless recall
+- **4** - Correct after hesitation: Correct answer after thinking
+- **3** - Difficult but correct: Recall with effort
+- **2** - Wrong but remembered: Wrong answer but recalled with hints
+- **1** - Wrong answer: Completely wrong
+- **0** - Complete blackout: No memory at all
+
+### Algorithm Features
+
+- Dynamically adjusts review intervals based on review quality
+- Higher quality = longer intervals
+- Low quality (< 3) resets learning progress
+- Personalized adaptation to each knowledge point's difficulty
+
+## 📁 Project Structure
+
+```
+learner/
+├── backend/                 # Backend code
+│   ├── app/
+│   │   ├── api/            # API routes
+│   │   ├── core/           # Core configuration
+│   │   ├── db/             # Database configuration
+│   │   ├── models/         # Data models
+│   │   ├── schemas/        # Pydantic schemas
+│   │   ├── services/       # Business logic
+│   │   └── main.py         # Application entry
+│   ├── requirements.txt    # Python dependencies
+│   └── Dockerfile
+│
+├── frontend/               # Frontend code
+│   ├── src/
+│   │   ├── components/    # React components
+│   │   ├── pages/         # Page components
+│   │   ├── services/      # API services
+│   │   ├── hooks/         # Custom hooks
+│   │   ├── types/         # TypeScript types
+│   │   ├── utils/         # Utility functions
+│   │   └── styles/        # Style files
+│   ├── package.json
+│   └── Dockerfile
+│
+├── docker-compose.yml      # Docker orchestration
+└── README.md
+```
+
+## 🔧 API Documentation
+
+After starting the backend service, visit the following addresses for complete API documentation:
+
+- Swagger UI: http://localhost:8000/api/docs
+- ReDoc: http://localhost:8000/api/redoc
+
+### Main API Endpoints
+
+#### Knowledge Management
+- `GET /api/v1/knowledge/` - List knowledge points
+- `POST /api/v1/knowledge/` - Create knowledge point
+- `GET /api/v1/knowledge/{id}` - Get knowledge point details
+- `PUT /api/v1/knowledge/{id}` - Update knowledge point
+- `DELETE /api/v1/knowledge/{id}` - Delete knowledge point
+
+#### Learning Content
+- `POST /api/v1/learning/` - Add learning content
+- `GET /api/v1/learning/` - View learning records
+- `GET /api/v1/learning/stats/daily` - Learning statistics
+
+#### Review Management
+- `GET /api/v1/review/plan` - Get review plan
+- `GET /api/v1/review/due` - Due reviews list
+- `POST /api/v1/review/` - Submit review record
+- `GET /api/v1/review/question/{id}` - Generate review question
+
+#### Knowledge Graph
+- `GET /api/v1/graph/` - Get knowledge graph
+- `GET /api/v1/graph/suggest/{id}` - AI relationship suggestions
+- `GET /api/v1/graph/categories` - Knowledge category statistics
+
+## 🎨 UI Design
+
+The interface adopts an **Apple-style minimalist design** with features including:
+
+- 🎨 Clean and elegant visual style
+- 🌓 Light/dark mode support
+- 📱 Responsive design with mobile support
+- ✨ Smooth animation transitions
+- 🎯 User experience-focused interaction design
+
+## 🤝 Contributing
+
+Issues and Pull Requests are welcome!
+
+## 📄 License
+
+MIT License
+
+## 🙏 Acknowledgements
+
+- [SuperMemo](https://www.supermemo.com/) - SM-2 algorithm
+- [FastAPI](https://fastapi.tiangolo.com/) - Excellent web framework
+- [React](https://react.dev/) - Powerful frontend framework
+- [Azure OpenAI](https://azure.microsoft.com/en-us/products/ai-services/openai-service) - AI capabilities
+
+---
+
+💡 **Tip**: This is a personal knowledge management tool. It's recommended to use it daily to develop good learning and review habits!
+
+---
+
+<a name="chinese"></a>
+
 # Learner - 智能学习管理系统
 
 基于遗忘曲线的个人知识管理平台，帮助你构建系统化的知识体系。
@@ -257,4 +529,3 @@ MIT License
 ---
 
 💡 **提示**: 这是一个个人知识管理工具，建议坚持每日使用，养成良好的学习和复习习惯！
-

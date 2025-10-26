@@ -99,7 +99,7 @@ const Home: React.FC = () => {
       </div>
 
       <div className="action-cards">
-        <Link to="/learning/new" className="action-card card fade-in">
+        <Link to="/knowledge" className="action-card card fade-in">
           <BookOpen size={32} />
           <h3>记录学习</h3>
           <p>添加今天的学习内容，系统会自动提取知识点</p>
